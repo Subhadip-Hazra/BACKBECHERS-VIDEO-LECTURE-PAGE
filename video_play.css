@@ -1,0 +1,258 @@
+:root {
+    --primary: linear-gradient(to bottom right, #e3e2ef69, #1f238aa1);
+    --secondary: rgba(5, 242, 64, 0.934);
+    --text: #fafaf0f7;
+    --text_title: rgba(251, 246, 246, 0.998);
+    --accent: #fcfc14;
+    /* Add your previous color variables here */
+    --hue: 174;
+    --sat: 63%;
+    --first-color: hsl(var(--hue), var(--sat), 40%);
+    --first-color-alt: hsl(var(--hue), var(--sat), 36%);
+    --title-color: hsl(var(--hue), 12%, 15%);
+}
+
+/* Add your previous keyframes for the music bars animation here */
+@keyframes musicBarsEffect {
+    0%, 100% {
+        height: 20%;
+        opacity: 0.7;
+    }
+    50% {
+        height: 50%;
+        opacity: 1;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(139, 139, 209, 0.527);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.container {
+    display: grid;
+    background-color: rgba(91, 78, 139, 0.874);
+    border: 2px solid rgba(6, 6, 135, 0.541);
+    border-radius: 15px;
+    box-shadow: 10px 10px 10px rgba(12, 100, 148, 0.71);
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0.1rem 0.1rem;
+    text-transform: capitalize;
+}
+
+@media screen and (min-width: 1000px) {
+    .container {
+        grid-template-columns: 1.8fr 1.2fr;
+    }
+}
+
+.main-video {
+    margin-top: 20px;
+    margin-left: 24px;
+    color: rgba(11, 11, 11, 0.991);
+    width: 100%;
+    max-width: 100%;
+    height: 60%;
+    background-color: rgba(106, 110, 196, 0.58);
+    border: 2px solid rgba(47, 8, 245, 0.098);
+    border-radius: 15px;
+    box-shadow: 10px 10px 10px rgba(12, 100, 148, 0.71);
+    transition: all 0.3s ease;
+}
+
+.video-playlist {
+    margin-top: 20px;
+    margin-left: 23px;
+    color: var(--text);
+    width: 90%;
+    max-width: 100%;
+    height: 90%;
+    background-color: rgba(106, 110, 196, 0.58);
+    border: 2px solid rgba(47, 8, 245, 0.098);
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(58, 15, 211, 0.874);
+    transition: all 0.3s ease;
+}
+
+.main-video .title {
+    margin-top: 1rem;
+    transition: color 0.3s ease;
+}
+
+.video-playlist .title {
+    padding-left: 1rem;
+    transition: color 0.3s ease;
+}
+
+.video-playlist > p {
+    padding: 1rem;
+    color: var(--secondary);
+    transition: color 0.3s ease;
+}
+
+.video-playlist .videos {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.video-playlist .videos::-webkit-scrollbar {
+    width: 0.4rem;
+    border-radius: 0.4rem;
+    background-color: #0005;
+}
+
+.video-playlist .videos::-webkit-scrollbar-thumb {
+    border-radius: 0.4rem;
+    color: rgba(19, 16, 16, 0.568);
+}
+
+.video-playlist .videos .video {
+    position: relative;
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    justify-content: space-between; /* Align contents horizontally */
+    align-items: center;
+    padding: 0 1rem;
+    margin-top: 0.1rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.video-playlist .videos .video:hover {
+    background-color: #0003;
+    color: var(--accent);
+}
+
+.video-playlist .videos .video.active {
+    background-color: #0003;
+    color: var(--accent);
+}
+
+.main-video video {
+    width: 100%;
+    max-height: 60vh;
+    border-radius: 0.5rem;
+}
+
+.video img {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.5rem;
+    height: 1.5rem;
+    filter: invert(100%);
+    transition: filter 0.3s ease;
+}
+
+.video-playlist .videos .video.active img {
+    filter: invert(100%) sepia(100%) saturate(2000%) hue-rotate(360deg);
+}
+
+.video p {
+    margin-left: 2.5rem;
+}
+
+.video h3 {
+    width: 23rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font: 100 1rem sans-serif;
+    padding: 0 0.5rem;
+}
+
+/* Add styles to align next and previous buttons in one line */
+.video-playlist .bar {
+    display: flex; /* Use flexbox for alignment */
+    justify-content: space-between; /* Space between buttons */
+    align-items: center; /* Center vertically */
+}
+
+.bar .next {
+    font-size: 34px;
+}
+
+.bar .previous {
+    font-size: 34px;
+    margin-left: 80%;
+}
+
+@media screen and (max-width: 1000px) {
+    .container{
+        margin: 20px;
+    }
+    .main-video {
+        width: 100%;
+        height: 100%;
+        
+    }
+    .video-playlist {
+        width: 100%;
+        height: 90%;
+        margin-top: 15%;
+    }
+}
+
+@media screen and (max-width: 764px) {
+    .container{
+        margin: 20px;
+    }
+    .main-video {
+        width: 93%;
+        height: 100%;
+    }
+    .video-playlist {
+        width: 93%;
+        height: 84%;
+        margin-top: 20%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container{
+        margin: 20px;
+    }
+    .main-video {
+        width: 100%;
+        height: 100%;
+    }
+    .video-playlist {
+        width: 100%;
+        margin-top: 20%;
+    }
+}
+.previous_module {
+    font-size: 50px;
+}
+
+.next_module {
+    position: relative;
+    font-size: 50px;
+    bottom: 53px;
+    left: 90%;
+}
+.previous_module i:hover {
+    transform: scale(1.1);
+    color: rgb(110, 248, 11);
+}
+.next_module i:hover {
+    transform: scale(1.1);
+    color: rgb(34, 230, 34);
+}
